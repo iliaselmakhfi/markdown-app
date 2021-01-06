@@ -8,7 +8,17 @@ import {sampleText} from './sampleText'
 class App extends Component {
 
   state = {
-    text : sampleText
+    text : localStorage.getItem('text') ? localStorage.getItem('text') : sampleText
+  }
+
+  componentDidMount () {
+    const text = localStorage.getItem('text')
+    this.setState({text})
+  }
+
+  componentDidUpdate () {
+    const {text} = this.state
+    localStorage.setItem('text',text)
   }
 
   handleArea = event => {
